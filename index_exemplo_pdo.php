@@ -27,5 +27,5 @@ try{
 
 }
 catch (\PDOException $e){
-    echo "Não foi possivel estabelecar a conexão com o banco de dados. Erro: ".$e->getCode()." - ".$e->getMessage();
+    echo "NÃ£o foi possÃ­vel estabelecar a conexÃ£o com o banco de dados. Erro: ".$e->getCode()." - ".$e->getMessage();
 }
