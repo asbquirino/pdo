@@ -1,31 +1,44 @@
 <?php
 
+require_once 'Cliente.hpp';
+
 try{
     $conexao = new \PDO("mysql:host=localhost;dbname=pdo","root","");
-
-    echo "Lista todos os alunos. <br>";
-
-    echo "Nome - Nota <br>";
-
-    $query = "SELECT * FROM alunos";
-
-    foreach($conexao->query($query) as $cliente){
-        echo $cliente['nome']." - ".$cliente['nota']."<br>";
-    }
-
-    echo "<br><br><br>";
-
-    echo "Os que tem as 3 maiores notas. <br>";
-
-    echo "Nome - Nota <br>";
-
-    $query = "SELECT * FROM alunos ORDER BY nota DESC LIMIT 3";
-
-    foreach($conexao->query($query) as $cliente){
-        echo $cliente['nome']." - ".$cliente['nota']."<br>";
-    }
-
 }
 catch (\PDOException $e){
-    echo "Não foi possivel estabelecar a conexão com o banco de dados. Erro: ".$e->getCode()." - ".$e->getMessage();
+    die("Não foi possivel estabelecar a conexão com o banco de dados. Erro: ".$e->getCode()." - ".$e->getMessage());
 }
+
+$cliente = new Cliente($conexao);
+
+// --- Incluir
+//$cliente->setNome("Wesley")
+//        ->setEmail("wesley@wesley.com.br")
+//;
+//foreach($cliente->listar("id desc") as $c) {
+//    echo $c['nome']."<br>";
+//}
+
+// --- Listar
+//foreach($cliente->listar("id desc") as $c) {
+//    echo $c['nome']."<br>";
+//}
+
+// --- Alterar
+//$cliente->setId(6);
+//        ->setNome("Wesley Willians")
+//        ->setEmail("wesley@wesley.com.br")
+//;
+//foreach($cliente->listar("id desc") as $c) {
+//    echo $c['nome']."<br>";
+//}
+
+// --- Deletar
+//$resultado = $cliente->deletar(5);
+//foreach($cliente->listar("id desc") as $c) {
+//    echo $c['nome']."<br>";
+//}
+
+# --- Find
+$resultado = $cliente->find(6);
+echo $resultado['nome']." - ".$resultado['email']."<br>";
