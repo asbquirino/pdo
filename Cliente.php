@@ -2,7 +2,7 @@
 
 class Cliente
 {
-   private $db;
+   Private $db;
    
    private $id;
    private $nome;
