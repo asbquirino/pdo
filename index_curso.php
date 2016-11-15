@@ -2,11 +2,10 @@
 
 require_once 'Aluno.php';
 
-try{
-    $conexao = new \PDO("mysql:host=localhost;dbname=pdo","root","");
-}
-catch (\PDOException $e){
-    die("Não foi possível estabelecar a conexão com o banco de dados. Erro: ".$e->getCode()." - ".$e->getMessage());
+try {
+    $conexao = new \PDO("mysql:host=localhost;dbname=pdo", "root", "");
+} catch (\PDOException $e) {
+    die("Não foi possível estabelecar a conexão com o banco de dados. Erro: " . $e->getCode() . " - " . $e->getMessage());
 }
 
 $aluno = new Aluno($conexao);
@@ -17,14 +16,18 @@ echo "<p></p></h3><a href='novoaluno.php'>Novo Aluno</a></p>";
 // --- Listar
 echo "<table cellpadding='5'>  
           <tr>
-              <th colspan='2'>Ação</th>
               <th>Nome</th>
+              <th>Nota</th>
+              <th>Ação</th>
           </tr>";
-foreach($aluno->listar("nome") as $c) {
+foreach ($aluno->listar("nome") as $c) {
     echo "<tr>
-              <td><a href='alteraaluno.php?id=".$c['id']."'>Altera</a></td>
-              <td><a href='excluialuno.php?id=".$c['id']."'>Exclui</a></td>
-              <td><a href='mostraaluno.php?id=".$c['id']."'>".$c['nome']."</a></td>
+              <td>".$c['nome']."</td>
+              <td>".$c['nota']."</td>  
+              <td>
+                  <a href='alteraaluno.php?id=" . $c['id'] . "'>Edita</a> |
+                  <a href='excluialuno.php?id=" . $c['id'] . "'>Exclui</a>
+                  </td>
           </tr>";
 }
 echo "</table>";
