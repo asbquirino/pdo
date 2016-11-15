@@ -11,27 +11,6 @@ try {
 $aluno = new Aluno($conexao);
 echo "<h1>Alunos</h1>";
 
-echo "<p></p></h3><a href='novoaluno.php'>Novo Aluno</a></p>";
-
-// --- Listar
-echo "<table cellpadding='5'>  
-          <tr>
-              <th>Nome</th>
-              <th>Nota</th>
-              <th>Ação</th>
-          </tr>";
-foreach ($aluno->listar("nome") as $c) {
-    echo "<tr>
-              <td>".$c['nome']."</td>
-              <td>".$c['nota']."</td>  
-              <td>
-                  <a href='alteraaluno.php?id=" . $c['id'] . "'>Edita</a> |
-                  <a href='excluialuno.php?id=" . $c['id'] . "'>Exclui</a>
-                  </td>
-          </tr>";
-}
-echo "</table>";
-
 // --- Incluir
 //$cliente->setNome("Wesley")
 //        ->setEmail("wesley@wesley.com.br")
