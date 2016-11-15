@@ -1,19 +1,17 @@
 <?php
 
 require_once 'Aluno.php';
+require_once 'conecta.php';
 
-try{
-    $conexao = new \PDO("mysql:host=localhost;dbname=pdo","root","");
-}
-catch (\PDOException $e){
-    die("Não foi possível estabelecar a conexão com o banco de dados. Erro: ".$e->getCode()." - ".$e->getMessage());
-}
+$alunos = new Aluno($conexao);
+$alunos->setId($_GET['id']);
 
-$aluno = new Aluno($conexao);
-
-$resultado = $aluno->find($_GET['id']);
-if($aluno->deletar($_GET['id'])){
-    echo "<p>O aluno ".$resultado['nome']." foi excluído com sucesso.</p>";
-    echo "<a href='index.php'>Clique aqui para retornar.</a>";
+$resultado = $alunos->find();
+if ($alunos->deletar($_GET['id'])) {
+    ?>
+    <h1>Aluno excluido com sucesso</h1>
+    <p>O aluno <?php echo $resultado['nome']; ?> foi excluído com sucesso.</p>
+    <input type="button" value="Volta" onclick="window.location.href='index.php'">
+    <?php
 }
 
