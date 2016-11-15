@@ -47,7 +47,7 @@ class Aluno
         }
     }
 
-    public function alterar()
+    public function alterar($id)
     {
         $query = "UPDATE alunos SET nome=:nome, nota=:nota WHERE id=:id";
         $stmt = $this->db->prepare($query);
@@ -63,7 +63,7 @@ class Aluno
     {
         $query = "DELETE FROM alunos WHERE id=:id";
         $stmt = $this->db->prepare($query);
-        $stmt->bindValue(':id', $id);
+        $stmt->bindValue(':id', $this->getId());
         if($stmt->execute()){
             return true;
         }
@@ -104,7 +104,7 @@ class Aluno
     }
 
     /**
-     * @param mixed $email
+     * @param mixed $nota
      */
     public function setNota($nota)
     {
