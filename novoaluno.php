@@ -1,13 +1,33 @@
 <?php
 
 require_once 'Aluno.php';
+require_once 'conecta.php';
 
-try{
-    $conexao = new \PDO("mysql:host=localhost;dbname=pdo","root","");
-}
-catch (\PDOException $e){
-    die("Não foi possível estabelecar a conexão com o banco de dados. Erro: ".$e->getCode()." - ".$e->getMessage());
-}
+$alunos = new Aluno($conexao);
+?>
 
-$aluno = new Aluno($conexao);
-echo "<h1>Alunos</h1>";
+<h1>Novo Aluno</h1>
+
+<form action="gravanovoaluno.php" method="post">
+    <table>
+        <tr>
+            <td>
+                <label>Nome</label>
+            </td>
+            <td>
+                <input type="text" name="nome" size="100" maxlength="150">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Nota</label>
+            </td>
+            <td>
+                <input type="number" name="nota" min="0" max="10">
+            </td>
+        </tr>
+    </table>
+    <br/>
+    <input type="submit" value="Grava">
+    <input type="button" value="Volta" onclick="window.location.href='index.php'">
+</form>
