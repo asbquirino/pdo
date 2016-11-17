@@ -2,6 +2,7 @@
 
 require_once 'Aluno.php';
 require_once 'conecta.php';
+require_once 'ServiceDb.php';
 
 $alunos = new Aluno($conexao);
 echo "<h1>Alunos</h1>";
