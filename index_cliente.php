@@ -15,9 +15,8 @@ echo "<h1>Alunos</h1>";
 $cliente->setNome("Maria");
         =>setEmail("maria@wesley.com.br");
 
-$serviceDb = new ServiceDb($conexao, $cliente);
-$serviceDb->inserir();
-
+$serviceDb = new ServiceDb($conexao);
+$serviceDb->find()
 // --- Incluir
 //$cliente->setNome("Wesley")
 //        ->setEmail("wesley@wesley.com.br")
